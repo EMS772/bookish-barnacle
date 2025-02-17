@@ -1,0 +1,22 @@
+name: Deploy to Surge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Surge
+      run: npm install --global surge
+
+    - name: Authenticate and Deploy
+      run: |
+        surge login --token 4e6c01c79b268f1d23fafbefa1533fce
+        surge --project ./ --domain julioms20221798.surge.sh
